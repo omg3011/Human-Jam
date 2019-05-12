@@ -9,19 +9,19 @@ public class EndlessManager : Singleton<EndlessManager>
 
     // Private
     EndlessEntity latest_Pattern_Script;
-    EndlessEntity latest_Environment_Script;
+
+    [Header("<-- Reference to first pattern-->")]
+    public EndlessEntity first_Pattern_Script;
 
     void Start()
     {
-        // Spawn Default Pattern
-        SpawnPattern(PatternType.PATTERN_START);
-        SpawnEnvironment(EnvironmentType.ENVIRONMENT_1);
+        // Need to do this, to tell where is the first pattern->next spawn point
+        latest_Pattern_Script = first_Pattern_Script;
 
         // Spawn "n" x Pattern
         for (int i = 0; i < initial_spawn_count; ++i)
         {
             SpawnNextPattern();
-            SpawnNextEnvironment();
         }
     }
 
@@ -32,56 +32,15 @@ public class EndlessManager : Singleton<EndlessManager>
 
     public void SpawnPattern(PatternType type)
     {
+        // Create Pattern
         GameObject go = ObjectPoolingManager.Instance.Spawn_A_Specific_PatternPrefab(type, Vector3.zero);
 
-        // Spawn Start pattern
-        if (latest_Pattern_Script == null)
-        {
-            // Spawn at position (0, 0, 0) 
-            go.transform.position = Vector3.zero;
+        // Spawn at latest->next 
+        go.transform.position = latest_Pattern_Script.Get_Next_Pattern_Spawn_Position();
 
-            // Record down script that is attach to this gameobject
-            latest_Pattern_Script = go.GetComponent<EndlessEntity>();
+        // Record down new latest
+        latest_Pattern_Script = go.GetComponent<EndlessEntity>();
 
-            // Spawn Player here too
-            GameObject playerGO = ObjectPoolingManager.Instance.Spawn_A_Specific_CharacterPrefab(CharacterType.PLAYER, latest_Pattern_Script.Get_Player_Spawn_Position());
-
-            // Setup Camera here
-            FindObjectOfType<SmoothFollow2>().target = playerGO.transform;
-        }
-        // Spawn Other Pattern
-        else 
-        {
-            // Spawn at latest->next 
-            go.transform.position = latest_Pattern_Script.Get_Next_Pattern_Spawn_Position();
-
-            // Record down new latest
-            latest_Pattern_Script = go.GetComponent<EndlessEntity>();
-        }
-
-    }
-    public void SpawnEnvironment(EnvironmentType type)
-    {
-        GameObject go = ObjectPoolingManager.Instance.Spawn_A_Specific_EnvironmentPrefab(type, Vector3.zero);
-
-        // Spawn the first environment
-        if (latest_Environment_Script == null)
-        {
-            // Spawn at position (0, 0, 0) 
-            go.transform.position = Vector3.zero;
-
-            // Record down script that is attach to this gameobject
-            latest_Environment_Script = go.GetComponent<EndlessEntity>();
-        }
-        // Spawn Other Pattern
-        else
-        {
-            // Spawn at latest->next 
-            go.transform.position = latest_Environment_Script.Get_Next_Pattern_Spawn_Position();
-
-            // Record down new latest
-            latest_Environment_Script = go.GetComponent<EndlessEntity>();
-        }
     }
 
     public void SpawnNextPattern()
@@ -91,10 +50,4 @@ public class EndlessManager : Singleton<EndlessManager>
         SpawnPattern((PatternType) randomPattern);
     }
 
-    public void SpawnNextEnvironment()
-    {
-        int randomPattern = Random.Range(0, (int)EnvironmentType.TOTAL);
-
-        SpawnEnvironment((EnvironmentType)randomPattern);
-    }
 }

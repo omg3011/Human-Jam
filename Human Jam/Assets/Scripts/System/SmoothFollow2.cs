@@ -27,7 +27,7 @@ public class SmoothFollow2 : MonoBehaviour
         startPosition = transform.position;
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (!target)
             return;
@@ -38,7 +38,7 @@ public class SmoothFollow2 : MonoBehaviour
             wantedPosition = target.TransformPoint(0, height, distance);
 
         if (cameraDontFollow_X_Axis)
-            wantedPosition.x = transform.position.x;
+            wantedPosition.x = target.position.x;
         else
             wantedPosition.x = startPosition.x;
 

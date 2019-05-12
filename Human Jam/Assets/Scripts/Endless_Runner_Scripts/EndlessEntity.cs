@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class EndlessEntity : MonoBehaviour
 {
 
     //Reference
     [Header("<-- Spawn Points -->")]
     public Transform T_Next_Pattern_Spawn;    //where spawn next pattern?
-    public Transform T_Player_Spawn;          //where spawn player?
+
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class EndlessEntity : MonoBehaviour
     }
 
     //-- Utility
+
     public void Kill_Pattern_After_Delay(float seconds)
     {
         StartCoroutine(Start_Kill_Pattern(seconds));
@@ -40,10 +42,5 @@ public class EndlessEntity : MonoBehaviour
     public Vector3 Get_Next_Pattern_Spawn_Position()
     {
         return T_Next_Pattern_Spawn.position;
-    }
-
-    public Vector3 Get_Player_Spawn_Position()
-    {
-        return T_Player_Spawn.position;
     }
 }

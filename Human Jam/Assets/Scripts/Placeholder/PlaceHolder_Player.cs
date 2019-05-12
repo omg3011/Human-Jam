@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlaceHolder_Player : MonoBehaviour
 {
     public float speed = 10.0f;
 
+    bool canMove = false;
     Vector3 inputDir;
 
     void Start()
@@ -16,6 +18,9 @@ public class PlaceHolder_Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canMove)
+            return;
+
         //Read input
         inputDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
             
@@ -39,17 +44,14 @@ public class PlaceHolder_Player : MonoBehaviour
             }
         }
 
-        if (col.tag == "END_ENVIRONMENT_CP")
+        if(col.tag == "OBSTACLE")
         {
-            // Spawn a new Pattern
-            EndlessManager.Instance.SpawnNextEnvironment();
-
-            // Turn off the current pattern after a few second
-            EndlessEntity entity = col.GetComponentInParent<EndlessEntity>();
-            if (entity)
-            {
-                entity.Kill_Pattern_After_Delay(4);
-            }
+            SceneManager.LoadScene("Joel");
         }
+    }
+
+    public void StartMove()
+    {
+        canMove = true;
     }
 }
