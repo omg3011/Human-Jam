@@ -19,6 +19,7 @@ public enum PatternType
 public enum EnvironmentType
 {
     ENVIRONMENT_1,
+    ENVIRONMENT_2,
     TOTAL
 }
 

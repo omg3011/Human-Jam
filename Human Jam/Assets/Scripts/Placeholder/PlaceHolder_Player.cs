@@ -38,5 +38,18 @@ public class PlaceHolder_Player : MonoBehaviour
                 entity.Kill_Pattern_After_Delay(4);
             }
         }
+
+        if (col.tag == "END_ENVIRONMENT_CP")
+        {
+            // Spawn a new Pattern
+            EndlessManager.Instance.SpawnNextEnvironment();
+
+            // Turn off the current pattern after a few second
+            EndlessEntity entity = col.GetComponentInParent<EndlessEntity>();
+            if (entity)
+            {
+                entity.Kill_Pattern_After_Delay(4);
+            }
+        }
     }
 }
