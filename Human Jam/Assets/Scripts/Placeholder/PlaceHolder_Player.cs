@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlaceHolder_Player : MonoBehaviour
 {
     public float speed = 10.0f;
+    public float strafeSpeed = 5.0f;
 
     bool canMove = false;
     Vector3 inputDir;
@@ -22,9 +23,9 @@ public class PlaceHolder_Player : MonoBehaviour
             return;
 
         //Read input
-        inputDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
+        inputDir = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
             
-        transform.position += new Vector3(inputDir.x * speed * Time.deltaTime,
+        transform.position += new Vector3(inputDir.x * strafeSpeed * Time.deltaTime,
                                           0,
                                           speed * Time.deltaTime);
     }
