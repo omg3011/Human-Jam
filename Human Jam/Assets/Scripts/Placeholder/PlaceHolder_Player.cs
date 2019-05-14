@@ -46,7 +46,12 @@ public class PlaceHolder_Player : MonoBehaviour
 
         if(col.tag == "OBSTACLE")
         {
-            SceneManager.LoadScene("Joel");
+            SceneManager.LoadScene("Darren");
+        }
+
+        if (col.tag == "ENEMY")
+        {
+            SceneManager.LoadScene("Darren");
         }
     }
 

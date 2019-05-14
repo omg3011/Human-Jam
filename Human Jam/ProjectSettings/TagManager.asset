@@ -6,6 +6,7 @@ TagManager:
   tags:
   - END_CHECK_POINT
   - OBSTACLE
+  - ENEMY
   layers:
   - Default
   - TransparentFX
