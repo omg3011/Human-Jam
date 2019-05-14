@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6669388202541134514}
   - component: {fileID: 7061589475687362031}
   - component: {fileID: 8697336668741679256}
-  - component: {fileID: -6935922831394104004}
+  - component: {fileID: 4079621263233530602}
   m_Layer: 0
   m_Name: PlaceHolder Police
   m_TagString: ENEMY
@@ -92,7 +92,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6935922831394104004
+--- !u!114 &4079621263233530602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,4 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af2b8ef4bfaca443980a2194ae8e0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  T_player: {fileID: 0}
+  T_player: {fileID: 5231577979916008861, guid: 512200897dc34ce4083395448e2f080d,
+    type: 3}
+  speed: 10
