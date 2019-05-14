@@ -14,18 +14,20 @@ public class PlayerMovement : MonoBehaviour
     float rotx = 20f;
     float roty = 70f;
     float rotz = 10f;
-
+    float minRotation = 45f, maxRotation = 45f;
+    float currentAngle;
+    float MaxForce = 500f;
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+        //Debug.Log(transform.eulerAngles.y);
         // left direction which is also input key 'A' 
         if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             //transform in this case to rotate the player to turn left to be more realistic
             transform.Rotate(rotx * Time.deltaTime, -roty * Time.deltaTime, 0);
-            rb.AddForce(-LRSpeed * Time.deltaTime, 0, 0);     
+            rb.AddForce(-LRSpeed * Time.deltaTime, 0, 0);
         }
 
         // right direction which is also input key 'D' 
@@ -47,6 +49,22 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             rb.AddForce(0, 0, -ForwardSpeed * Time.deltaTime);
+        }
+
+        
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.collider.tag == "Enemy")
+        {
+            Rigidbody enemyRB = col.gameObject.GetComponent<Rigidbody>();
+
+            if(enemyRB)
+            {
+                Vector3 dir = (enemyRB.transform.position - transform.position).normalized;
+                enemyRB.AddForce(dir * 100, ForceMode.Impulse);
+            }
         }
     }
 }
