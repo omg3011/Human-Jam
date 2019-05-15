@@ -5,8 +5,8 @@ using UnityEngine;
 public enum CharacterType
 {
     PLAYER,
-    NPC_1,
-    NPC_2,
+    PEOPLE,
+    POLICE,
     TOTAL
 }
 public enum PatternType
@@ -90,7 +90,7 @@ public class ObjectPoolingManager : Singleton<ObjectPoolingManager>
         int characterID = (int)type;
 
         // If we have unused gameobject in our pool, we reuse
-        for(int count = 0; count < characterPool_List[characterID].Count; count++)
+        for (int count = 0; count < characterPool_List[characterID].Count; count++)
         {
             if(!characterPool_List[characterID][count].activeSelf)
             {

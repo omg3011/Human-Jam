@@ -2,13 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AITYPE
-{
-    IDLE,
-    MOVE,
-    CHARGE,
-    TOTAL
-}
+
 
 
 public class AiSpawner : MonoBehaviour

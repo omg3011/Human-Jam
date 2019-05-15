@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5925548724808293853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,10 +46,10 @@ MonoBehaviour:
   CharacterObjects:
   - Object: {fileID: 4966374608753543904, guid: c114929a68396a647a98a6ef985872de,
       type: 3}
-    Amount: 0
+    Amount: 1
   - Object: {fileID: 1120057063705477445, guid: 9de924dcf87aa4e4fbcc19c68d717643,
       type: 3}
-    Amount: 0
+    Amount: 1
   - Object: {fileID: 355798560125278802, guid: 3beb920d84e4b4c438fe2d0ed22c3814, type: 3}
     Amount: 0
   PatternObjects:
