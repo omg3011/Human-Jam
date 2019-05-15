@@ -62,3 +62,6 @@ MonoBehaviour:
   - Object: {fileID: 5149096703718344311, guid: 32dc2ac7a48d406489750ae984726e2e,
       type: 3}
     Amount: 0
+  - Object: {fileID: 4855543464081933735, guid: cd6b454bb2f5e7b4e9b51c2b59ede46f,
+      type: 3}
+    Amount: 0
