@@ -84,11 +84,27 @@ public class EndlessEntity : MonoBehaviour
             {
                 EnemySpawnInfo info = enemySpawnDetails_list[i];
 
-                //RePosition enemy
-                if (info.ai_spawn_type == SpawnType.RANGE)
+                //RePosition enemy [Manual Position Enemy, move Way Point to Way Point]
+                if (info.ai_spawn_type == SpawnType.RANGE && info.ai_movement_type == AIType.MOVE)
                 {
                     // Spawn enemy at their CP1
                     ListOfEnemies[index].position = info.T_CheckPoints[0].position;
+                }
+                // Reposition Enemy: [Random spawn within a range, spawn idle enemy]
+                else if(info.ai_spawn_type == SpawnType.RANDOM && info.ai_movement_type == AIType.IDLE)
+                {
+                    Vector3 randomPos = new Vector3(Random.Range(info.T_CheckPoints[0].position.x, info.T_CheckPoints[1].position.x),
+                                                    0.5f,
+                                                    Random.Range(info.T_CheckPoints[0].position.z, info.T_CheckPoints[1].position.z));
+                    ListOfEnemies[index].position = randomPos;
+                }
+                // Reposition Enemy: [Random Spawn within a range, spawn charge enemy]
+                else if(info.ai_spawn_type == SpawnType.RANDOM && info.ai_movement_type == AIType.CHARGE)
+                {
+                    Vector3 randomPos = new Vector3(Random.Range(info.T_CheckPoints[0].position.x, info.T_CheckPoints[1].position.x),
+                                                    0.5f,
+                                                    Random.Range(info.T_CheckPoints[0].position.z, info.T_CheckPoints[1].position.z));
+                    ListOfEnemies[index].position = randomPos;
                 }
                 index++;
             }

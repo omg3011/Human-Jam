@@ -1,19 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using SimpleJSON;
 
-public class SaveLoadManager : MonoBehaviour
+[SerializeField]
+public class SaveRecord
 {
-    // Start is called before the first frame update
-    void Start()
+    public int highscore;
+
+    public SaveRecord(int newHighscore)
     {
-        
+        highscore = newHighscore;
+    }
+    public JSONObject SaveToJSON()
+    {
+        JSONObject playerJson = new JSONObject();
+        playerJson.Add("Highscore", highscore);
+        return playerJson;
+    }
+}
+
+public class SaveLoadManager : Singleton<SaveLoadManager>
+{
+    public void SaveData(SaveRecord data)
+    {
+        JSONObject playerSaveData = data.SaveToJSON();
+
+        //SAVE JSON IN COMPUTER
+        string path = Application.persistentDataPath + "/SaveData.json";
+        File.WriteAllText(path, playerSaveData.ToString());
     }
 
-    // Update is called once per frame
-    void Update()
+    public SaveRecord LoadData()
     {
-        
+        string path = Application.persistentDataPath + "/SaveData.json";
+        if (System.IO.File.Exists(path))
+        {
+            string jsonString = File.ReadAllText(path);
+            JSONObject playerJson = (JSONObject)JSON.Parse(jsonString);
+
+            //SET VALUES
+            SaveRecord retrievedData = new SaveRecord((int)playerJson["Highscore"]);
+            return retrievedData;
+        }
+        return null;
     }
 }
 

@@ -15,12 +15,18 @@ public class MoveAI : MonoBehaviour
     [HideInInspector] public Vector3 moveDir;
 
     // Const
-    const float GAP_THRESHOLD = 2.0f;
+    const float GAP_THRESHOLD = 0.5f;
 
     // Private
+    Transform T_Player;
     Rigidbody rb;
     int cp_index;
     Vector3 targetPos;
+
+    bool hasCharged = false;
+    float nextHomFinish;
+    const float HOM_THRESHOLD = 1.0f;
+
 
 
     private void Awake()
@@ -31,11 +37,19 @@ public class MoveAI : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        if(aiMovementType == AIType.MOVE)
+        // Find Player
+        if(T_Player == null)
         {
-            if(ListOfCP.Count > 0)
-                transform.position = ListOfCP[0].position;
+            GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
+            if (playerGO)
+                T_Player = playerGO.transform;
         }
+
+        if(aiMovementType == AIType.CHARGE)
+        {
+            hasCharged = false;
+        }
+
 
         cp_index = 0;
 
@@ -56,7 +70,7 @@ public class MoveAI : MonoBehaviour
         speed = newSpeed;
 
         // Update new rotation
-        ChangeRotation();
+        ChangeRotation(targetPos);
     }
 
     Vector3 GetTargetPos()
@@ -82,7 +96,7 @@ public class MoveAI : MonoBehaviour
                 targetPos = GetTargetPos();
 
                 // Update new rotation
-                ChangeRotation();
+                ChangeRotation(targetPos);
             }
             else
             {
@@ -91,15 +105,87 @@ public class MoveAI : MonoBehaviour
                 //rb.AddForce(speed * Time.deltaTime, 0, 0);
             }
         }
+        else if(aiMovementType == AIType.CHARGE)
+        {
+            // If player exist,
+            if(T_Player)
+            {
+                // Havent charge, because got wall in between player and enemy
+                if(!hasCharged)
+                {
+                    // Update Rotation: keep facing player
+                    moveDir = (T_Player.position - transform.position).normalized;
+                    moveDir.y = 0;
+                    if(moveDir != Vector3.zero)
+                        ChangeRotation(T_Player.position);
+
+                    // Got: wall in between player and enemy [Therefore, dont move]
+                    if (Check_For_Wall_Between_Me_And_Target_Part2(moveDir, 1000))        // Use this
+                    {
+                        // Do Nothing
+                    }
+                    else
+                    {
+                        hasCharged = true;
+                        nextHomFinish = Time.time + HOM_THRESHOLD;
+                    }
+                }
+                // Start charging
+                else
+                {
+                    // No hom after 2s
+                    if (Time.time > nextHomFinish)
+                    {
+                        transform.position += moveDir * speed * Time.deltaTime;
+                    }
+                    // Hom towards player for 0.5s
+                    else
+                    {
+                        // Apply Rotation: keep facing player
+                        moveDir = (T_Player.position - transform.position).normalized;
+                        moveDir.y = 0;
+                        if (moveDir != Vector3.zero)
+                            ChangeRotation(T_Player.position);
+
+                        // Apply Movement
+                        transform.position += moveDir * speed * Time.deltaTime;
+                    }
+                }
+            }
+        }
 
     }
 
-    void ChangeRotation()
+    void ChangeRotation(Vector3 target)
     {
         // Rotate correct direction
-        Vector3 rotDir = (targetPos - transform.position).normalized;
+        Vector3 rotDir = (target - transform.position).normalized;
         rotDir.y = 0;
         if(rotDir != Vector3.zero)
             transform.rotation = Quaternion.LookRotation(rotDir);
+    }
+
+    // Return true if, got wall
+    bool Check_For_Wall_Between_Me_And_Target_Part2(Vector3 lookDir, float range)
+    {
+        // Raycast
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(transform.position, lookDir, range);
+
+        // Do this first, if we do hits[0] they will complain length 0, u check for what
+        if (hits.Length > 0)
+        {
+            // Check if 1st ray collision is player, means no walls in between
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (hits[i].collider.tag == "Player")
+                    return false;
+                else if (hits[i].collider.tag == "OBSTACLE")
+                    return true;
+            }
+        }
+
+        // Check if no collider or if 1st ray collision is not player, means dont move lo.
+        return true;
     }
 }

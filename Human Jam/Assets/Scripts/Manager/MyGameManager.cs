@@ -17,7 +17,7 @@ public class MyGameManager : MonoBehaviour
 
     bool doScreenTransition = false;
 
-    int highscore = 99;
+    int highscore = 0;
 
     private void Awake()
     {
@@ -29,6 +29,15 @@ public class MyGameManager : MonoBehaviour
 
         else if (Instance != this)
             Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        SaveRecord loadedData = SaveLoadManager.Instance.LoadData();
+        if(loadedData != null)
+        {
+            highscore = loadedData.highscore;
+        }
     }
 
     void OnEnable()
@@ -118,7 +127,10 @@ public class MyGameManager : MonoBehaviour
     {
         // Record new highscore
         if(score > highscore)
+        {
             highscore = score;
+            SaveLoadManager.Instance.SaveData(new SaveRecord(highscore));
+        }
 
         UIManager.Instance.Update_GameOver_Score_Text(score);
         UIManager.Instance.Show_GameOver_Screen();

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1179587832867880032}
   - component: {fileID: 5881432157366138845}
   - component: {fileID: 7144717469976844303}
+  - component: {fileID: 4613331557121273914}
   m_Layer: 0
   m_Name: PlaceHolder People
   m_TagString: ENEMY
@@ -109,6 +110,22 @@ MonoBehaviour:
   aiMovementType: 0
   ListOfCP: []
   moveDir: {x: 0, y: 0, z: 0}
+--- !u!54 &4613331557121273914
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120057063705477445}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 100
+  m_AngularDrag: 100
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!1 &7541296897893743183
 GameObject:
   m_ObjectHideFlags: 0
