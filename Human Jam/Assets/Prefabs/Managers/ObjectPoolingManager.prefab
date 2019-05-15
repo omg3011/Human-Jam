@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterObjects:
-  - Object: {fileID: 5231577979916008861, guid: 512200897dc34ce4083395448e2f080d,
+  - Object: {fileID: 4966374608753543904, guid: c114929a68396a647a98a6ef985872de,
       type: 3}
     Amount: 0
   - Object: {fileID: 1120057063705477445, guid: 9de924dcf87aa4e4fbcc19c68d717643,

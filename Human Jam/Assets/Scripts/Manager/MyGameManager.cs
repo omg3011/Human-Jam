@@ -116,6 +116,10 @@ public class MyGameManager : MonoBehaviour
 
     public void EndGame(int score)
     {
+        // Record new highscore
+        if(score > highscore)
+            highscore = score;
+
         UIManager.Instance.Update_GameOver_Score_Text(score);
         UIManager.Instance.Show_GameOver_Screen();
     }
