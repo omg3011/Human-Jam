@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8186532105934988363}
   m_Layer: 0
   m_Name: PlaceHolder Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d3a239a383a754c915c4dadd33c898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   speed: 75
   strafeSpeed: 15
 --- !u!1001 &1741368788
@@ -214,3 +215,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1741368788}
   m_PrefabAsset: {fileID: 0}
+=======
+  speed: 20
+  strafeSpeed: 5
+>>>>>>> 044aaf5a3fc1fc489f20b2abb16c8bdb5f8cfac9

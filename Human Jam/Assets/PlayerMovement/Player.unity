@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf22dd4777e10241b8dda946c2faec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 187772417}
+  Player: {fileID: 187772417}
   Speed: 0.125
   offset: {x: 0, y: 5, z: -10}
 --- !u!1 &1599616516
@@ -695,6 +695,7 @@ GameObject:
   - component: {fileID: 2058822889}
   - component: {fileID: 2058822890}
   - component: {fileID: 2058822891}
+  - component: {fileID: 2058822885}
   m_Layer: 8
   m_Name: Enemy1
   m_TagString: Enemy
@@ -702,6 +703,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2058822885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058822884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9987ae7ec605f144a9244d448f1407ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &2058822886
 MeshRenderer:
   m_ObjectHideFlags: 0
