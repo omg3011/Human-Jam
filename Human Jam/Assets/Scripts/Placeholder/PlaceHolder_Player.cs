@@ -9,6 +9,8 @@ public class PlaceHolder_Player : MonoBehaviour
     public float speed = 10.0f;
     public float strafeSpeed = 5.0f;
 
+    public GameObject frontParticle;
+
     // Private Variable
     Vector3 inputDir;
     bool canMove = false;
@@ -99,6 +101,7 @@ public class PlaceHolder_Player : MonoBehaviour
 
         if(col.tag == "OBSTACLE")
         {
+            SpawnObstacleParticle(transform.position);
             this.enabled = false;
             MyGameManager.Instance.EndGame(score);
         }
@@ -152,5 +155,10 @@ public class PlaceHolder_Player : MonoBehaviour
     {
         score += incrementAmount;
         UIManager.Instance.UpdateCurrentScoreText(score);
+    }
+
+    void SpawnObstacleParticle(Vector3 playerPos)
+    {
+        frontParticle = Instantiate(frontParticle, playerPos, frontParticle.transform.rotation);
     }
 }
