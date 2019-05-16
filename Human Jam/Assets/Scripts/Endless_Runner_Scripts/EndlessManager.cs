@@ -45,7 +45,7 @@ public class EndlessManager : Singleton<EndlessManager>
 
     public void SpawnNextPattern()
     {
-        int randomPattern = Random.Range(1, (int)PatternType.TOTAL);
+        int randomPattern = Random.Range(0, 1);// (int)PatternType.TOTAL);
 
         SpawnPattern((PatternType) randomPattern);
     }

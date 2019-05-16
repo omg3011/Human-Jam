@@ -53,15 +53,5 @@ MonoBehaviour:
   - Object: {fileID: 355798560125278802, guid: 3beb920d84e4b4c438fe2d0ed22c3814, type: 3}
     Amount: 0
   PatternObjects:
-  - Object: {fileID: 1532249469785778438, guid: ebca350d61fb61e4db9f463659383917,
-      type: 3}
-    Amount: 0
-  - Object: {fileID: 7146505489390882901, guid: 6f7c1d0feb582f149b7fd6b67e7549f6,
-      type: 3}
-    Amount: 0
-  - Object: {fileID: 5149096703718344311, guid: 32dc2ac7a48d406489750ae984726e2e,
-      type: 3}
-    Amount: 0
-  - Object: {fileID: 4855543464081933735, guid: cd6b454bb2f5e7b4e9b51c2b59ede46f,
-      type: 3}
+  - Object: {fileID: 0}
     Amount: 0
