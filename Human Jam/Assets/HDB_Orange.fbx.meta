@@ -3,7 +3,52 @@ guid: 1f17369eec4a698488318a2fad74ea78
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Block 1
+    second: {fileID: 2100000, guid: be39a1b9b4d07624b906c2d18a6a94c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Block 2
+    second: {fileID: 2100000, guid: 27c63297dddb34446827c2ff95bcebf5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Block 3
+    second: {fileID: 2100000, guid: 1d75bac21c995e145b3dd0998c7d0c03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Block 4
+    second: {fileID: 2100000, guid: 0dbdf19683e3ef54b9d83247841399b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Block White
+    second: {fileID: 2100000, guid: 602f185678e84434f9e8ce13abbded7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: 2100000, guid: 50229d028bc9f3146b1a6a17972488a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lift
+    second: {fileID: 2100000, guid: 50229d028bc9f3146b1a6a17972488a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: NIG
+    second: {fileID: 2100000, guid: 50229d028bc9f3146b1a6a17972488a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window Pane
+    second: {fileID: 2100000, guid: 50229d028bc9f3146b1a6a17972488a7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -80,7 +125,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.001
+    globalScale: 0.1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
